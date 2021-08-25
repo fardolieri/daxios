@@ -1,0 +1,28 @@
+{
+  "name": "daxios",
+  "version": "0.0.1",
+  "description": "",
+  "types": "daxios.ts",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fardolieri/daxios.git"
+  },
+  "keywords": [
+    "axios",
+    "controller",
+    "typescript"
+  ],
+  "author": "Daniel Mittereder",
+  "bugs": {
+    "url": "https://github.com/fardolieri/daxios/issues"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
+}
