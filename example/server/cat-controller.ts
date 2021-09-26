@@ -1,6 +1,6 @@
 export class CatController {
-  GET_get_cats() {
-    return ['😺', '🙀'] as const;
+  GET_black_cat() {
+    return '🐈‍⬛' as const;
   }
 
   POST_sad_cat() {
