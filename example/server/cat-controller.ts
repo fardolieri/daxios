@@ -10,4 +10,8 @@ export class CatController {
   DELETE_angry() {
     return '😾' as const;
   }
+
+  DELETE(): void {
+    return;
+  }
 }

@@ -6,19 +6,25 @@ type KebabToSnakeCase<T extends string> = T extends `${infer A}-${infer B}`
   ? `${A}_${KebabToSnakeCase<B>}`
   : T;
 
+type RemoveFirstUnderscore<T extends string> = T extends `_${infer S}` ? S : T;
+
 type UrlToMethodName<
   GetPostDelete extends string,
   Pretty extends string
 > = Pretty extends `${infer Prefix}/${infer S}`
   ? [Prefix, `${GetPostDelete}_${KebabToSnakeCase<S>}`]
-  : never;
+  : [Pretty, GetPostDelete];
 
 type MethodNameToUrl<GetPostDelete extends string, App> = {
   [Prefix in keyof App]: Prefix extends string
     ? {
-        [M in keyof App[Prefix]]: M extends `${GetPostDelete}_${infer MethodSnakeCase}`
+        [M in keyof App[Prefix]]: M extends `${GetPostDelete}${infer MethodSnakeCase}`
           ? App[Prefix][M] extends () => any
-            ? `${Prefix}/${SnakeToKebabCase<MethodSnakeCase>}`
+            ? RemoveFirstUnderscore<MethodSnakeCase> extends ''
+              ? `${Prefix}`
+              : `${Prefix}/${SnakeToKebabCase<
+                  RemoveFirstUnderscore<MethodSnakeCase>
+                >}`
             : never
           : never;
       }[keyof App[Prefix]]
